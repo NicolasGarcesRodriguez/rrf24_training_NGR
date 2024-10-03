@@ -33,8 +33,8 @@ usd <- 0.00037
 # 2. USD conversion factor.
 # 1. area in acres
 
-hh_data <- hh_data %>% mutate(area_acre = case_when(ar_unit==1 ~ ar_farm,
-                                                    ar_unit==2 ~ ar_farm * acre_conv
+hh_data <- hh_data %>% mutate(area_acre = case_when(ar_farm_unit==1 ~ ar_farm,
+                                                    ar_farm_unit==2 ~ ar_farm * acre_conv
 ))%>%
     mutate(area_acre =replace_na(area_acre,0))%>%
     set_variable_labels(area_acre="Area farmed in acres")
@@ -143,7 +143,7 @@ final_hh_data <- final_hh_data %>%
 # Save both the HH dataset and the secondary data.
 
 write_dta(final_hh_data,file.path(data_path,"Final/TZA_CCT_analysis.dta"))
-write_dta(secondary_data,file.path(data_path,"Final/TZA_amenity_analysis.dta"))
+#write_dta(secondary_data,file.path(data_path,"Final/TZA_amenity_analysis.dta"))
 
 # Tip: Ensure all variables are correctly labeled 
 

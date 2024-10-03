@@ -11,7 +11,7 @@
 ### Loading data ----
 
 # Load the dataset
-data_path <- "C:/Users/wb631291/OneDrive - WBG/Desktop/DataWork/Data/"
+#data_path <- "C:/Users/wb631291/OneDrive - WBG/Desktop/DataWork/Data/"
 data      <- read_dta(file.path(data_path, "Raw/TZA_CCT_baseline.dta"))
 
 ### Initial checks 
@@ -41,7 +41,6 @@ data_clean_hh <- data_tidy_hh %>%
     mutate(duration=as.numeric(duration)) %>%
     # Convert ar_farm_unit to factor (categorical data)
     mutate(ar_farm_unit=as.factor(ar_farm_unit)) %>%
-    mutate(na_if(ar_farm_unit,"")) %>%
     # Replace values in the crop variable based on crop_other using regex for new crops
     mutate(crop = case_when(
            str_detect(crop_other, "Coconut")~ 40,
@@ -70,9 +69,7 @@ data_tidy_mem <- data_dedup %>%
  ### Data cleaning for HH-member level
 data_clean_mem <- data_tidy_mem %>%
     # Drop rows where gender is missing (NA)
-     filter(!is.na(gender))%>%
-    # Variable labels
-    ......
+     filter(!is.na(gender))
 
 # Save the tidy household-member data
 write_dta(data_clean_mem, file.path(data_path, "Intermediate/TZA_CCT_HH_mem.dta"))

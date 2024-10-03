@@ -11,7 +11,7 @@
 
 # Load data 
 #household level data
-data_path <- "C:/Users/wb631291/OneDrive - WBG/Desktop/DataWork/Data/"
+#data_path <- "C:/Users/wb631291/OneDrive - WBG/Desktop/DataWork/Data/"
 hh_data   <- read_dta(file.path(data_path, "Final/TZA_CCT_analysis.dta"))
 
 # secondary data 
